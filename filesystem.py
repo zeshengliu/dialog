@@ -10,7 +10,8 @@ MODELS_DIR = "models"
 class Scaner(object):
     def __init__(self, path):
         self.entries = [Entry(entry) for entry in scandir(path.encode()) if '.tar.gz' in entry.path.decode()]
-        # a = list(map(lambda p: (p.path, p.modified_time), sorted(self.entries, key=lambda e: e.modified_time, reverse=True)))
+        # a = list(map(lambda p: (p.path, p.modified_time), sorted(self.entries, key=lambda e:
+        # e.modified_time, reverse=True)))
         # print(a)
         self.latest_entry = next(iter(sorted(self.entries, key=lambda e: e.modified_time, reverse=True)), None)
 

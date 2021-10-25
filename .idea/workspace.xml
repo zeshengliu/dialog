@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db80d611-cd61-459f-a3fc-1efa78b9ab9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/actions/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actions/actions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credentials.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endpoints.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/filesystem.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gun.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_server.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_train.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/endpoints.yml" beforeDir="false" afterPath="$PROJECT_DIR$/endpoints.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filesystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/filesystem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +15,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1zzOi3qiZNMxxaPLG975XqcyRRD" />
@@ -29,6 +28,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
@@ -72,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1635147575601</updated>
-      <workItem from="1635147577114" duration="2062000" />
+      <workItem from="1635147577114" duration="4636000" />
     </task>
     <servers />
   </component>

@@ -4,7 +4,6 @@
 
     web server，定义前端调用接口
 """
-
 from flask import Flask, send_from_directory
 from flask import request
 import requests
@@ -13,7 +12,6 @@ import yaml
 import re
 from copy import deepcopy
 import rasa.shared.nlu.training_data.loading as loading
-from rasa.core.actions import action
 from filesystem import Scaner
 from fuzzywuzzy import process
 import os
@@ -221,15 +219,6 @@ def requestTaskBotServer(userid, content):
     :param content: 自然语言文本
     :return:  json格式响应数据
     """
-    # 先利用规则进行处理
-    test = TestJSGF()
-    data_message = test.test_jsgf_parse(content)
-
-    # 规则匹配成功
-    if data_message["intent"]:
-        out_msg = use_rule(data_message, conversation_id=userid)
-        return out_msg
-
     # 利用rasa处理
     params = {'sender': userid, 'message': content}
     user_data = {"text": content, "message_id": userid}
@@ -459,7 +448,7 @@ def requestTaskBotServer(userid, content):
 if __name__ == '__main__':
     webIp = '127.0.0.1'
     webPort = '8088'
-    print("##### webIp={}, webPort={}".format(webIp, webPort))
+    print("### webIp={}, webPort={}###".format(webIp, webPort))
     # 启动服务，开启多线程、debug模式
     # 浏览器访问curl http://127.0.0.1:8088/query?userid=1\&text=买手机
     app.run(host=webIp, port=webPort, threaded=True)
