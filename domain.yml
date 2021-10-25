@@ -1,0 +1,187 @@
+version: '2.0'
+intents:
+- 打招呼
+- 买机票
+- 退机票
+- 买演唱会票
+- 抢奥运会票
+- 买电影票
+- 测试意图
+entities:
+- telephoneBrand:
+    roles:
+    - computer
+    - phone
+- telephoneOperator
+- datetime
+- city:
+    roles:
+    - toCitySlot
+    - fromCitySlot
+- televisionBrand
+- colseBrand:
+    roles:
+    - cloth
+    - shoe
+- clothColor
+- wineBrand
+- wineType
+- washBrand
+- washType
+- star
+- channel
+- room
+- book
+- name
+- quire
+- food
+- code
+- msg
+- test
+slots:
+  fromCitySlot158:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  toCitySlot159:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  timeSlot160:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  fromCitySlot161:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  toCitySlot162:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  timeSlot163:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  star164:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  star166:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  star168:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  code184:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+  message185:
+    type: text
+    influence_conversation: false
+    auto_fill: false
+forms:
+  买机票_form:
+    required_slots:
+      fromCitySlot158:
+      - type: from_entity
+        entity: city
+        role: fromCitySlot
+      - type: from_entity
+        entity: city
+      toCitySlot159:
+      - type: from_entity
+        entity: city
+        role: toCitySlot
+      - type: from_entity
+        entity: city
+      timeSlot160:
+      - type: from_entity
+        entity: datetime
+  退机票_form:
+    required_slots:
+      fromCitySlot161:
+      - type: from_entity
+        entity: city
+        role: fromCitySlot
+      - type: from_entity
+        entity: city
+      toCitySlot162:
+      - type: from_entity
+        entity: city
+        role: toCitySlot
+      - type: from_entity
+        entity: city
+      timeSlot163:
+      - type: from_entity
+        entity: datetime
+  买演唱会票_form:
+    required_slots:
+      star164:
+      - type: from_entity
+        entity: star
+  抢奥运会票_form:
+    required_slots:
+      star166:
+      - type: from_entity
+        entity: star
+  买电影票_form:
+    required_slots:
+      star168:
+      - type: from_entity
+        entity: star
+  测试意图_form:
+    required_slots:
+      code184:
+      - type: from_entity
+        entity: test
+      message185:
+      - type: from_entity
+        entity: msg
+responses:
+  utter_answer_打招呼:
+  - text: hello
+  utter_ask_fromCitySlot158:
+  - text: 请问您从什么地方出发
+  utter_ask_toCitySlot159:
+  - text: 请问您想到哪里去
+  utter_ask_timeSlot160:
+  - text: 请问您想什么时候出发
+  utter_answer_买机票:
+  - text: 已经为您定了机票
+  utter_ask_fromCitySlot161:
+  - text: 退什么哪里出发的票
+  utter_ask_toCitySlot162:
+  - text: 退去哪儿的票
+  utter_ask_timeSlot163:
+  - text: 退的票的时间
+  utter_answer_退机票:
+  - text: 不退
+  utter_ask_star164:
+  - text: 哪位明星
+  utter_answer_买演唱会票:
+  - text: 已经抢光了
+  utter_ask_star166:
+  - text: 什么体育明星
+  utter_answer_抢奥运会票:
+  - text: 奥运会票抢光了
+  utter_ask_star168:
+  - text: 哪位电影明星？
+  utter_answer_买电影票:
+  - text: 已经没票了
+  utter_ask_code184:
+  - text: 什么编号
+  utter_ask_message185:
+  - text: 什么消息
+  utter_answer_测试意图:
+  - text: 服务回复话术
+actions:
+- action_reset_slot
+- action_ask_slot
+- action_set_slot
+session_config:
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false

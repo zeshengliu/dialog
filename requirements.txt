@@ -1,0 +1,4 @@
+python==3.8.3
+rasa==2.7.1
+rasa_sdk==2.7.0
+flask=1.1.2

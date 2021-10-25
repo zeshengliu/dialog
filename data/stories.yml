@@ -1,0 +1,48 @@
+version: '2.0'
+stories:
+- story: 打招呼
+  steps:
+  - intent: 打招呼
+  - action: utter_answer_打招呼
+- story: 买机票
+  steps:
+  - intent: 买机票
+  - action: 买机票_form
+  - active_loop: 买机票_form
+  - active_loop: null
+  - action: utter_answer_买机票
+- story: 退机票
+  steps:
+  - intent: 退机票
+  - action: 退机票_form
+  - active_loop: 退机票_form
+  - active_loop: null
+  - action: utter_answer_退机票
+- story: 买演唱会票
+  steps:
+  - intent: 买演唱会票
+  - action: 买演唱会票_form
+  - active_loop: 买演唱会票_form
+  - active_loop: null
+  - action: utter_answer_买演唱会票
+- story: 抢奥运会票
+  steps:
+  - intent: 抢奥运会票
+  - action: 抢奥运会票_form
+  - active_loop: 抢奥运会票_form
+  - active_loop: null
+  - action: utter_answer_抢奥运会票
+- story: 买电影票
+  steps:
+  - intent: 买电影票
+  - action: 买电影票_form
+  - active_loop: 买电影票_form
+  - active_loop: null
+  - action: utter_answer_买电影票
+- story: 测试意图
+  steps:
+  - intent: 测试意图
+  - action: 测试意图_form
+  - active_loop: 测试意图_form
+  - active_loop: null
+  - action: utter_answer_测试意图

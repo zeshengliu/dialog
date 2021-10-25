@@ -1,0 +1,426 @@
+version: '2.0'
+nlu:
+- intent: 打招呼
+  examples: '- 你好
+
+    - 你好啊
+
+    - 您好
+
+    - 您好啊
+
+    - 你好吗
+
+    '
+- synonym: 华为
+  examples: '- hw
+
+    '
+- synonym: 苹果
+  examples: '- iphone
+
+    '
+- synonym: 小米
+  examples: '- xm
+
+    '
+- lookup: telephoneBrand
+  examples: '- 华为
+
+    - hw
+
+    - 苹果
+
+    - iphone
+
+    - 小米
+
+    - xm
+
+    '
+- synonym: 移动
+  examples: '- 中国移动
+
+    '
+- synonym: 联通
+  examples: '- 中国联通
+
+    '
+- synonym: 电信
+  examples: '- 中国电信
+
+    '
+- lookup: telephoneOperator
+  examples: '- 移动
+
+    - 中国移动
+
+    - 联通
+
+    - 中国联通
+
+    - 电信
+
+    - 中国电信
+
+    '
+- synonym: 明天早上
+  examples: '- 明天上午
+
+    '
+- lookup: datetime
+  examples: '- 明天早上
+
+    - 明天上午
+
+    '
+- synonym: 北京
+  examples: ''
+- synonym: 上海
+  examples: ''
+- synonym: 广州
+  examples: ''
+- lookup: city
+  examples: '- 北京
+
+    - 上海
+
+    - 广州
+
+    '
+- synonym: 索尼
+  examples: '- sony
+
+    '
+- synonym: TCL
+  examples: ''
+- synonym: 海信
+  examples: '- haixin
+
+    '
+- lookup: televisionBrand
+  examples: '- 索尼
+
+    - sony
+
+    - TCL
+
+    - 海信
+
+    - haixin
+
+    '
+- synonym: 阿迪
+  examples: '- adidas
+
+    '
+- synonym: 耐克
+  examples: '- nike
+
+    '
+- synonym: 鸿星尔克
+  examples: '- Erke
+
+    '
+- lookup: colseBrand
+  examples: '- 阿迪
+
+    - adidas
+
+    - 耐克
+
+    - nike
+
+    - 鸿星尔克
+
+    - Erke
+
+    '
+- synonym: 红色
+  examples: '- red
+
+    '
+- synonym: 蓝色
+  examples: '- blue
+
+    '
+- synonym: 黑色
+  examples: '- black
+
+    '
+- synonym: 白色
+  examples: '- white
+
+    '
+- lookup: clothColor
+  examples: '- 红色
+
+    - red
+
+    - 蓝色
+
+    - blue
+
+    - 黑色
+
+    - black
+
+    - 白色
+
+    - white
+
+    '
+- synonym: 茅台
+  examples: ''
+- synonym: 五粮液
+  examples: ''
+- synonym: 剑南春
+  examples: ''
+- synonym: 郎酒
+  examples: ''
+- lookup: wineBrand
+  examples: '- 茅台
+
+    - 五粮液
+
+    - 剑南春
+
+    - 郎酒
+
+    '
+- synonym: 白酒
+  examples: ''
+- synonym: 红酒
+  examples: ''
+- synonym: 黄酒
+  examples: ''
+- synonym: 啤酒
+  examples: ''
+- lookup: wineType
+  examples: '- 白酒
+
+    - 红酒
+
+    - 黄酒
+
+    - 啤酒
+
+    '
+- synonym: 海尔
+  examples: '- haier
+
+    '
+- synonym: 西门子
+  examples: ''
+- synonym: 小天鹅
+  examples: ''
+- lookup: washBrand
+  examples: '- 海尔
+
+    - haier
+
+    - 西门子
+
+    - 小天鹅
+
+    '
+- synonym: 滚筒
+  examples: ''
+- synonym: 波轮
+  examples: ''
+- lookup: washType
+  examples: '- 滚筒
+
+    - 波轮
+
+    '
+- synonym: 周杰伦
+  examples: '- 周董
+
+    '
+- synonym: 陈奕迅
+  examples: '- 奕迅
+
+    '
+- synonym: 林俊杰
+  examples: '- JJ
+
+    '
+- lookup: star
+  examples: '- 周杰伦
+
+    - 周董
+
+    - 陈奕迅
+
+    - 奕迅
+
+    - 林俊杰
+
+    - JJ
+
+    '
+- synonym: 央视体育
+  examples: '- cctv5
+
+    '
+- synonym: 央视一台
+  examples: '- cctv1
+
+    '
+- lookup: channel
+  examples: '- 央视体育
+
+    - cctv5
+
+    - 央视一台
+
+    - cctv1
+
+    '
+- synonym: 厨房
+  examples: '- 伙房
+
+    '
+- synonym: 客厅
+  examples: '- 起居室
+
+    '
+- lookup: room
+  examples: '- 厨房
+
+    - 伙房
+
+    - 客厅
+
+    - 起居室
+
+    '
+- synonym: 巴金的家
+  examples: '- bjdj
+
+    '
+- synonym: 朝花夕拾
+  examples: '- zhxs
+
+    '
+- lookup: book
+  examples: '- 巴金的家
+
+    - bjdj
+
+    - 朝花夕拾
+
+    - zhxs
+
+    '
+- synonym: 毛泽东
+  examples: '- 毛主席
+
+    '
+- synonym: 习近平
+  examples: '- 习大大
+
+    '
+- lookup: name
+  examples: '- 毛泽东
+
+    - 毛主席
+
+    - 习近平
+
+    - 习大大
+
+    '
+- synonym: 朝阳区
+  examples: '- 朝阳
+
+    '
+- synonym: 顺义区
+  examples: '- 顺义
+
+    '
+- lookup: quire
+  examples: '- 朝阳区
+
+    - 朝阳
+
+    - 顺义区
+
+    - 顺义
+
+    '
+- synonym: 方便面
+  examples: '- 泡面
+
+    '
+- synonym: 火腿肠
+  examples: '- 肠
+
+    '
+- lookup: food
+  examples: '- 方便面
+
+    - 泡面
+
+    - 火腿肠
+
+    - 肠
+
+    '
+- synonym: '0'
+  examples: ''
+- synonym: '1'
+  examples: ''
+- lookup: code
+  examples: '- 0
+
+    - 1
+
+    '
+- synonym: 我要赢
+  examples: ''
+- synonym: 我输了
+  examples: ''
+- lookup: msg
+  examples: '- 我要赢
+
+    - 我输了
+
+    '
+- regex: test
+  examples: '- [0-9]
+
+    '
+- intent: 买机票
+  examples: '- 我想定一张[明天](datetime)从[北京]{"entity": "city", "role": "fromCitySlot"}到[上海]{"entity":
+    "city", "role": "toCitySlot"}的机票
+
+    - 我要订一张机票
+
+
+    - 买机票
+
+    - 订机票
+
+    '
+- intent: 退机票
+  examples: '- 我要退票
+
+    '
+- intent: 买演唱会票
+  examples: '- 演唱会
+
+    '
+- intent: 抢奥运会票
+  examples: '- 奥运会门票
+
+    '
+- intent: 买电影票
+  examples: '- 我要买电影票
+
+    '
+- intent: 测试意图
+  examples: '- 测试服务
+
+    '
