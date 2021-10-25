@@ -74,6 +74,7 @@ def post(url, data=None):
     return res
 
 
+# 是否达到追问次数
 def isMaxAskTimes(required_slot, events, max_time=3):
     count = 0
     if len(events) < max_time:
