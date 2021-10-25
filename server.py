@@ -22,7 +22,15 @@ MODELS_DIR = "models"
 app = Flask(__name__)
 
 
-def reply_process(reply):
+# 用于提交post请求
+def post(url, data=None):
+    data = json.dumps(data, ensure_ascii=False).encode(encoding="utf-8")
+    res = requests.post(url=url, data=data, headers={'Content-Type': 'application/json'})
+    res = json.loads(res.text)
+    return res
+
+
+def replyProcess(reply):
     temp_reply = deepcopy(reply)
     left = re.finditer("\[", temp_reply)
     right = re.finditer("\]", temp_reply)
@@ -35,7 +43,7 @@ def reply_process(reply):
     return reply
 
 
-def intent_slots_entities(intent):
+def intentSlotsEntities(intent):
     domain_file = "domain.yml"
     with open(domain_file, 'r') as fr:
         forms = yaml.load(fr, Loader=yaml.FullLoader)["forms"]
@@ -47,8 +55,8 @@ def intent_slots_entities(intent):
     return list(slots), list(entities)
 
 
-def is_getAllSlots(tracker, intent):
-    intent_slots = intent_slots_entities(intent)[0]
+def isGetAllSlots(tracker, intent):
+    intent_slots = intentSlotsEntities(intent)[0]
     tracker_slots = tracker["slots"]
     flag = True
     for slot in intent_slots:
@@ -65,13 +73,6 @@ def messagePretreatment(query):
         return process.extractOne(query, choices)[1]
     except FileNotFoundError as err:
         raise err
-
-
-def post(url, data=None):
-    data = json.dumps(data, ensure_ascii=False).encode(encoding="utf-8")
-    res = requests.post(url=url, data=data, headers={'Content-Type': 'application/json'})
-    res = json.loads(res.text)
-    return res
 
 
 # 是否达到追问次数
@@ -97,7 +98,6 @@ def messageValid(message, entities):
 
 
 def use_rule(data, conversation_id):
-    print("进来了")
     intent = data["intent"]
     out_msg = {"state": None, "result": {}}
     user_data = {
@@ -140,7 +140,7 @@ def use_rule(data, conversation_id):
         messages = tracker["messages"]
     resInfo = post(predict_url)
     action_name, tracker = resInfo["scores"][0], deepcopy(resInfo["tracker"])
-    if intent == "打招呼" or (intent != "打招呼" and is_getAllSlots(intent=intent, tracker=tracker)):
+    if intent == "打招呼" or (intent != "打招呼" and isGetAllSlots(intent=intent, tracker=tracker)):
         post(action_url, reset_slot_action)
     out_msg["state"] = 1
     out_msg["result"]["intent"] = user_data["parse_data"]["intent"]
@@ -149,17 +149,17 @@ def use_rule(data, conversation_id):
     out_msg["result"]["entities"] = user_data["parse_data"]["entities"]
     out_msg["result"]["slots"] = tracker["slots"]
     out_msg["result"]["next_action"] = action_name
-    out_msg["result"]["reply"] = reply_process(messages[0]["text"])
+    out_msg["result"]["reply"] = replyProcess(messages[0]["text"])
     return out_msg
 
 
-def download_file(path):
+def downloadFile(path):
     return send_from_directory(os.path.dirname(path), os.path.basename(path), as_attachment=True,
                                attachment_filename=os.path.basename(path))
 
 
 @app.route('/<path:path>', methods=['GET'])
-def hotUpdate(path):
+def hotUpDate(path):
     fetch_latest = '@latest' in path
     real_path = os.path.join(MODELS_DIR, path.replace('@latest', ''))
     if not os.path.exists(real_path):
@@ -171,9 +171,9 @@ def hotUpdate(path):
             if not latest_entry:
                 return 'No Models Found', 404
             # print(latest_entry.path)
-            return download_file(latest_entry.path)
+            return downloadFile(latest_entry.path)
     else:
-        return download_file(real_path)
+        return downloadFile(real_path)
 
 
 @app.route('/query', methods=['GET', 'POST'])
@@ -272,7 +272,7 @@ def requestTaskBotServer(userid, content):
                 else:
                     continue
             out_msg["result"]["next_action"] = action_name
-            out_msg["result"]["reply"] = reply_process(messages[0]["text"])
+            out_msg["result"]["reply"] = replyProcess(messages[0]["text"])
             return out_msg
         else:
             out_msg["state"] = 0
@@ -321,7 +321,7 @@ def requestTaskBotServer(userid, content):
                             else:
                                 continue
                         out_msg["result"]["next_action"] = {"name": "action_ask_slot", "score": 1.0}
-                        out_msg["result"]["reply"] = reply_process(messages[0]["text"])
+                        out_msg["result"]["reply"] = replyProcess(messages[0]["text"])
                         return out_msg
                 else:
                     # 清空槽位信息
@@ -349,7 +349,7 @@ def requestTaskBotServer(userid, content):
                         else:
                             continue
                     out_msg["result"]["next_action"] = action_name
-                    out_msg["result"]["reply"] = reply_process(messages[0]["text"])
+                    out_msg["result"]["reply"] = replyProcess(messages[0]["text"])
                     return out_msg
             resInfo = post(predict_url)
             action_name, tracker = resInfo["scores"][0], deepcopy(resInfo["tracker"])
@@ -374,14 +374,14 @@ def requestTaskBotServer(userid, content):
                 else:
                     continue
             out_msg["result"]["next_action"] = action_name
-            out_msg["result"]["reply"] = reply_process(messages[0]["text"])
-            if is_getAllSlots(tracker, cur_intent["name"]):
+            out_msg["result"]["reply"] = replyProcess(messages[0]["text"])
+            if isGetAllSlots(tracker, cur_intent["name"]):
                 action_data = {"name": "action_reset_slot"}
                 post(action_url, action_data)
             return out_msg
         else:
             if entities and (set(list(map(lambda p: p["entity"], entities))) &
-                             set(intent_slots_entities(lasted_intent["name"])[1])):
+                             set(intentSlotsEntities(lasted_intent["name"])[1])):
                 messages = post(rasa_url, data=params)
                 resInfo = post(predict_url)
                 action_name, tracker = resInfo["scores"][0], deepcopy(resInfo["tracker"])
@@ -403,8 +403,8 @@ def requestTaskBotServer(userid, content):
                         max_index = val_len.index(max(val_len))
                         out_msg["result"]["slots"][key] = val[max_index]
                 out_msg["result"]["next_action"] = action_name
-                out_msg["result"]["reply"] = reply_process(messages[0]["text"])
-                if is_getAllSlots(tracker, lasted_intent["name"]):
+                out_msg["result"]["reply"] = replyProcess(messages[0]["text"])
+                if isGetAllSlots(tracker, lasted_intent["name"]):
                     action_data = {"name": "action_reset_slot"}
                     post(action_url, action_data)
                 return out_msg
@@ -442,7 +442,7 @@ def requestTaskBotServer(userid, content):
                     else:
                         continue
                 out_msg["result"]["next_action"] = {"name": "action_ask_slot", "score": 1.0}
-                out_msg["result"]["reply"] = reply_process(messages[0]["text"])
+                out_msg["result"]["reply"] = replyProcess(messages[0]["text"])
                 return out_msg
 
 
