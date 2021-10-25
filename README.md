@@ -13,3 +13,7 @@
 
 (2) 启动训练脚本
 > sh run_train.sh
+
+### 2、启动服务
+
+> sh run_server.sh
