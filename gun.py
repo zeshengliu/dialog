@@ -1,3 +1,4 @@
+# encoding=utf-8
 import multiprocessing
 import gevent.monkey
 gevent.monkey.patch_all()

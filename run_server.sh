@@ -2,6 +2,7 @@
 python -m rasa run --enable-api --model models/ --port 5005 --endpoints endpoints.yml --credentials credentials.yml --debug &
 # 2. 启动action server
 python -m rasa run actions --port 5055 --actions actions --debug &
-# 3. 启动server.py
-python server.py
+# 3. 启动server.py, 并发部署
+# python server.py
+gunicorn -c gun.py server:app
 

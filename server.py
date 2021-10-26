@@ -449,7 +449,7 @@ def requestTaskBotServer(userid, content):
 if __name__ == '__main__':
     webIp = '127.0.0.1'
     webPort = '8088'
-    print("### webIp={}, webPort={}###".format(webIp, webPort))
+    print("###webIp={}, webPort={}###".format(webIp, webPort))
     # 启动服务，开启多线程、debug模式
     # 浏览器访问curl http://127.0.0.1:8088/query?userid=1\&text=买手机
     app.run(host=webIp, port=webPort, threaded=True)

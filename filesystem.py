@@ -1,3 +1,4 @@
+# encoding=utf-8
 from datetime import datetime
 from os import scandir, listdir
 from os.path import isfile, isdir, relpath, join, getsize
