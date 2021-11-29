@@ -9,15 +9,9 @@ intents:
 - 测试意图
 entities:
 - telephoneBrand:
-    roles:
-    - computer
-    - phone
 - telephoneOperator
 - datetime
 - city:
-    roles:
-    - toCitySlot
-    - fromCitySlot
 - televisionBrand
 - colseBrand:
     roles:
